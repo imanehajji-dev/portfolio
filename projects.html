@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Projets – Portfolio Imane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style-editorial.css">
+  <style>
+    .projects-list {
+      padding: 80px 60px 100px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+
+    .project-block:first-child { padding-top: 0; }
+
+    /* Alterner image gauche / droite */
+    .project-block:nth-child(even) .project-media { order: 2; }
+    .project-block:nth-child(even) .project-info  { order: 1; }
+
+    /* Media */
+    .project-media {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: var(--gray-card);
+      position: relative;
+    }
+
+    .project-media img,
+    .project-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .project-block:hover .project-media img,
+    .project-block:hover .project-media video {
+      transform: scale(1.04);
+    }
+
+    /* Placeholder coloré si pas encore d'image */
+    .project-media-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+    }
+
+    .c1 { background: linear-gradient(135deg, #ffe8d6, #ffd0a8); }
+    .c2 { background: linear-gradient(135deg, #d6e8ff, #a8c8ff); }
+    .c3 { background: linear-gradient(135deg, #d6ffe8, #a8ffc8); }
+    .c4 { background: linear-gradient(135deg, #f5d6ff, #e8a8ff); }
+
+    /* Info */
+    .project-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .project-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .project-year {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .project-status {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      background: var(--gray-card);
+      color: var(--text-mid);
+      border-radius: 20px;
+    }
+
+    .project-status.en-cours {
+      background: rgba(255,106,0,0.1);
+      color: var(--orange);
+    }
+
+    .project-info h2 {
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      transition: color 0.2s;
+    }
+
+    .project-block:hover .project-info h2 { color: var(--orange); }
+
+    .project-info p {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-bottom: 28px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .projects-list { padding: 40px 28px 80px; }
+      .project-block {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 60px 0;
+      }
+      .project-block:nth-child(even) .project-media,
+      .project-block:nth-child(even) .project-info { order: unset; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">Portfolio.</div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="projects.html" class="active">Projets</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-contact">
+  <div class="blob-deco"></div>
+  <p class="hero-eyebrow" id="eyebrow">Sélection de travaux</p>
+  <h1 class="hero-title" id="heroTitle">
+    <span class="line"><span>Mes</span></span>
+    <span class="line"><span><em>projets.</em></span></span>
+  </h1>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+  <div class="bg-text" id="bgText">work</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LISTE DES PROJETS -->
+<section class="projects-list">
+
+  <!-- ── Projet 01 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+           <video autoplay muted loop playsinline><source src="videos/archi-design.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 01</span>
+      <div class="project-meta">
+        <span class="project-year">2025</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>Archi Design</h2>
+      <p>Site vitrine pour un studio de design d'intérieur. Présentation des services, réalisations et identité visuelle de la marque.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 02 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/freshly-restaurant.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 02</span>
+      <div class="project-meta">
+        <span class="project-year">2025</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>Freshly Restaurant</h2>
+      <p>Site web pour un restaurant, avec menu, présentation des plats et formulaire de réservation. Interactions dynamiques gérées en JavaScript.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+        <span class="tag-ed">JavaScript</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 03 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/hello-world.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 03</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status en-cours">Terminé</span>
+      </div>
+      <h2>Hello World</h2>
+      <p>Blog de voyage présentant des destinations, récits et inspirations de voyage. Mise en page structurée et design soigné pour une lecture agréable.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 04 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/mini-paint.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 04</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>Mini Paint</h2>
+      <p>Application de coloriage sur grille dans le navigateur. L'utilisateur sélectionne une couleur via un sélecteur et colorise les cases de la grille</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+        <span class="tag-ed">JavaScript</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 05 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/cafécoin.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 05</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>Le Café du Coin</h2>
+      <p>Site vitrine pour un café de quartier. Mise en page soignée avec utilisation de SASS pour une architecture CSS modulaire et maintenable.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+        <span class="tag-ed">SASS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 06 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/move-accademy.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 06</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>Move Accademy</h2>
+      <p>Site pour une école ou académie de danse. Présentation des cours, horaires et ambiance de l'établissement.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 07 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/new-york.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 07</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>New York City</h2>
+      <p>Page web thématique autour de New York. Travail sur l'intégration visuelle, la typographie et la mise en page.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 08 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/portfolio-sass.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 08</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>Portfolio (SASS)</h2>
+      <p>Maquette de portfolio sans contenu de projets. Travail sur la structure, la mise en page et l'architecture CSS avec SASS/SCSS.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+        <span class="tag-ed">SCSS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 09 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/street-art-blog.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 09</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>Street Art Blog</h2>
+      <p>Blog dédié au street art, développé avec React. Navigation entre articles, affichage dynamique du contenu et interactions utilisateur.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+        <span class="tag-ed">JavaScript</span>
+        <span class="tag-ed">React</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 10 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/pixel-art-blog.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 10</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>Pixel Art Blog</h2>
+      <p>Blog dédié au pixel art, développé avec React. Affichage dynamique des articles et navigation fluide entre les contenus.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+        <span class="tag-ed">JavaScript</span>
+        <span class="tag-ed">React</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Projet 11 ── -->
+  <div class="project-block reveal">
+    <div class="project-media">
+      <video autoplay muted loop playsinline><source src="videos/todolist.webm" type="video/webm"></video>
+    </div>
+    <div class="project-info">
+      <span class="project-num">Projet 11</span>
+      <div class="project-meta">
+        <span class="project-year">2026</span>
+        <span class="project-status">Terminé</span>
+      </div>
+      <h2>To do List</h2>
+      <p>Application de gestion de tâches développée avec React. Ajout, suppression et suivi des tâches avec gestion de l'état via les hooks.</p>
+      <div class="project-tags">
+        <span class="tag-ed">HTML</span>
+        <span class="tag-ed">CSS</span>
+        <span class="tag-ed">JavaScript</span>
+        <span class="tag-ed">React</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-strip reveal">
+  <div class="cta-strip-inner">
+    <div>
+      <p class="section-label">Travaillons ensemble</p>
+      <h2>Un projet en tête ?</h2>
+    </div>
+    <a href="contact.html" class="btn-primary-ed large">
+      <span>Me contacter</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M7 17L17 7M17 7H7M17 7v10"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 – Imane Hajji · Développeuse Web</p>
+  <div class="footer-links">
+    <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/imane-hajji-92b50a211" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="editorial.js"></script>
+</body>
+</html>

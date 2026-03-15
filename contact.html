@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style-editorial.css">
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <h3>Message envoyé ✦</h3>
+  <p>Je vous répondrai dans les plus brefs délais.</p>
+  <button class="success-close" onclick="closeSuccess()">Fermer</button>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">Portfolio.</div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="projects.html">Projets</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero-contact">
+  <div class="blob-deco"></div>
+  <p class="hero-eyebrow" id="eyebrow">Parlons de votre projet</p>
+  <h1 class="hero-title" id="heroTitle">
+    <span class="line"><span>Travaillons</span></span>
+    <span class="line"><span>ensemble<em>.</em></span></span>
+  </h1>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+  <div class="bg-text" id="bgText">contact</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-left">
+    <p class="section-label reveal">Me contacter</p>
+    <h2 class="reveal" data-delay="1">Restons en<br>contact.</h2>
+    <p class="reveal" data-delay="2">Je suis toujours ouvert aux nouvelles opportunités et collaborations. N'hésitez pas à me contacter pour discuter de votre projet.</p>
+    <div class="contact-info-list">
+      <div class="contact-info-item reveal" data-delay="2">
+        <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+        <div class="info-text">
+          <small>Email</small>
+          <span>imane.hajji.dev@gmail.com</span>
+        </div>
+      </div>
+      <div class="contact-info-item reveal" data-delay="3">
+        <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+        <div class="info-text">
+          <small>Téléphone</small>
+          <span>+33 7 81 69 91 20</span>
+        </div>
+      </div>
+      <div class="contact-info-item reveal" data-delay="4">
+        <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="info-text">
+          <small>Localisation</small>
+          <span>Rennes, France</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-right">
+    <form id="contactForm" action="https://formspree.io/f/xeeronrg" method="POST">
+      <div class="form-group reveal">
+        <label>Votre nom</label>
+        <input type="text" name="nom" placeholder="Jean Dupont" required>
+      </div>
+      <div class="form-group reveal" data-delay="1">
+        <label>Adresse email</label>
+        <input type="email" name="email" placeholder="jean@example.com" required>
+      </div>
+      <div class="form-group reveal" data-delay="2">
+        <label>Sujet</label>
+        <input type="text" name="sujet" placeholder="Nouveau projet web">
+      </div>
+      <div class="form-group reveal" data-delay="3">
+        <label>Message</label>
+        <textarea name="message" rows="4" placeholder="Décrivez votre projet..." required></textarea>
+      </div>
+      <div class="form-actions reveal" data-delay="4">
+        <button type="submit" class="btn-submit">
+          <span>
+            Envoyer
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </span>
+        </button>
+        <p class="form-note">Je réponds généralement sous 24h.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 – Développeuse Web</p>
+  <div class="footer-links">
+    <a href="https://github.com/imanehajji-dev">GitHub</a>
+    <a href="https://www.linkedin.com/in/imane-hajji-92b50a211">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="editorial.js"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(this);
+    fetch(this.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' }})
+      .then(() => {
+        document.getElementById('successOverlay').classList.add('show');
+        this.reset();
+      });
+  });
+  function closeSuccess() {
+    document.getElementById('successOverlay').classList.remove('show');
+  }
+</script>
+</body>
+</html>
